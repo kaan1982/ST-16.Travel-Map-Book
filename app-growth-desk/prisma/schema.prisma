@@ -1,0 +1,258 @@
+// App Growth Desk - private ASO intelligence panel
+// Single-developer internal tool. No multi-tenant / billing models by design.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Country {
+  id   String @id @default(cuid())
+  code String @unique // ISO 3166-1 alpha-2, e.g. US, TR, BR
+  name String
+}
+
+model Locale {
+  id     String @id @default(cuid())
+  code   String @unique // e.g. en-US, de-DE, pt-BR
+  name   String
+}
+
+model App {
+  id              String   @id @default(cuid())
+  appStoreId      String   @unique // numeric Apple id, e.g. 284882215
+  bundleId        String?
+  name            String
+  developerName   String?
+  category        String?
+  iconUrl         String?
+  price           Float?   @default(0)
+  ratingAverage   Float?
+  ratingCount     Int?
+  currentVersion  String?
+  supportedLangs  String[] @default([])
+  storeUrl        String?
+  isOwned         Boolean  @default(true)
+  ascAppId        String? // App Store Connect numeric app id, if linked
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  localeMetadata    AppLocaleMetadata[]
+  keywords          Keyword[]
+  competitorLinks   Competitor[]          @relation("AppCompetitors")
+  metadataRevisions MetadataRevision[]
+  reviews           Review[]
+  aiReports         AIReport[]
+  notifications     Notification[]
+}
+
+model AppLocaleMetadata {
+  id               String   @id @default(cuid())
+  appId            String
+  app              App      @relation(fields: [appId], references: [id], onDelete: Cascade)
+  localeCode       String
+  title            String?
+  subtitle         String?
+  promotionalText  String?
+  keywordsField    String?
+  description      String?
+  releaseNotes     String?
+  supportUrl       String?
+  marketingUrl     String?
+  privacyUrl       String?
+  screenshotUrls   String[] @default([])
+  fetchedAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@unique([appId, localeCode])
+}
+
+enum KeywordIntent {
+  HIGH_INTENT
+  BROAD
+  COMPETITOR
+  BRANDED
+  PROBLEM
+}
+
+enum KeywordStatus {
+  WINNING
+  FALLING
+  OPPORTUNITY
+  NOT_RANKING
+}
+
+model Keyword {
+  id              String        @id @default(cuid())
+  appId           String
+  app             App           @relation(fields: [appId], references: [id], onDelete: Cascade)
+  term            String
+  countryCode     String
+  localeCode      String
+  intent          KeywordIntent @default(BROAD)
+  cluster         String?
+  difficultyScore Int?
+  volumeScore     Int?
+  bestRank        Int?
+  status          KeywordStatus @default(NOT_RANKING)
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  snapshots KeywordRankSnapshot[]
+
+  @@unique([appId, term, countryCode])
+}
+
+model KeywordRankSnapshot {
+  id          String   @id @default(cuid())
+  keywordId   String
+  keyword     Keyword  @relation(fields: [keywordId], references: [id], onDelete: Cascade)
+  rank        Int? // null = not ranking / not checked
+  checkedAt   DateTime @default(now())
+  provider    String   @default("apple_lookup") // RankingProvider source id
+
+  @@index([keywordId, checkedAt])
+}
+
+model Competitor {
+  id            String   @id @default(cuid())
+  appId         String
+  app           App      @relation("AppCompetitors", fields: [appId], references: [id], onDelete: Cascade)
+  appStoreId    String
+  name          String
+  subtitle      String?
+  iconUrl       String?
+  category      String?
+  ratingAverage Float?
+  ratingCount   Int?
+  createdAt     DateTime @default(now())
+
+  snapshots CompetitorSnapshot[]
+}
+
+model CompetitorSnapshot {
+  id           String     @id @default(cuid())
+  competitorId String
+  competitor   Competitor @relation(fields: [competitorId], references: [id], onDelete: Cascade)
+  title        String?
+  subtitle     String?
+  description  String?
+  ratingAverage Float?
+  ratingCount  Int?
+  capturedAt   DateTime   @default(now())
+}
+
+model MetadataRevision {
+  id         String   @id @default(cuid())
+  appId      String
+  app        App      @relation(fields: [appId], references: [id], onDelete: Cascade)
+  localeCode String
+  snapshot   Json // full metadata payload at time of save
+  note       String?
+  createdAt  DateTime @default(now())
+}
+
+model Review {
+  id           String   @id @default(cuid())
+  appId        String
+  app          App      @relation(fields: [appId], references: [id], onDelete: Cascade)
+  countryCode  String
+  rating       Int
+  title        String?
+  body         String?
+  authorName   String?
+  appVersion   String?
+  sentiment    String? // bug | pricing | feature_request | ux | praise
+  reviewedAt   DateTime
+  reply        String?
+  repliedAt    DateTime?
+}
+
+model AppleAdsAccount {
+  id                  String   @id @default(cuid())
+  orgName             String
+  encryptedCredential String // encrypted API credential blob
+  createdAt           DateTime @default(now())
+
+  campaigns AppleAdsCampaign[]
+}
+
+model AppleAdsCampaign {
+  id          String   @id @default(cuid())
+  accountId   String
+  account     AppleAdsAccount @relation(fields: [accountId], references: [id], onDelete: Cascade)
+  appStoreId  String
+  name        String
+  status      String?
+  dailyBudget Float?
+  createdAt   DateTime @default(now())
+
+  keywordReports AppleAdsKeywordReport[]
+}
+
+model AppleAdsKeywordReport {
+  id           String           @id @default(cuid())
+  campaignId   String
+  campaign     AppleAdsCampaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  keyword      String
+  countryCode  String
+  matchType    String // exact | broad
+  spend        Float    @default(0)
+  taps         Int      @default(0)
+  installs     Int      @default(0)
+  trials       Int      @default(0)
+  paidConversions Int   @default(0)
+  cpt          Float?
+  cpi          Float?
+  cpaTrial     Float?
+  cpaPaid      Float?
+  revenue      Float?
+  roas         Float?
+  reportDate   DateTime
+}
+
+model AIReport {
+  id          String   @id @default(cuid())
+  appId       String
+  app         App      @relation(fields: [appId], references: [id], onDelete: Cascade)
+  countryCode String
+  asoScore    Int?
+  metadataScore        Int?
+  keywordOpportunityScore Int?
+  conversionRiskScore  Int?
+  screenshotScore      Int?
+  localizationScore    Int?
+  competitorPressureScore Int?
+  payload    Json // full structured AI output (diagnosis, suggestions, plans...)
+  createdAt  DateTime @default(now())
+}
+
+enum NotificationType {
+  RANK_DROP
+  RANK_GAIN
+  COMPETITOR_CHANGE
+  KEYWORD_OPPORTUNITY
+  METADATA_WARNING
+}
+
+model Notification {
+  id        String            @id @default(cuid())
+  appId     String?
+  app       App?              @relation(fields: [appId], references: [id], onDelete: Cascade)
+  type      NotificationType
+  message   String
+  isRead    Boolean           @default(false)
+  createdAt DateTime          @default(now())
+}
