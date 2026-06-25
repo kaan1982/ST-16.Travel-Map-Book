@@ -85,7 +85,7 @@ export function MetadataEditorTable({
       </div>
 
       {warnings.length > 0 && (
-        <div className="rounded-lg border border-amber-200 bg-amber-50 p-3 text-xs text-amber-800">
+        <div className="rounded-lg border border-amber-500/30 bg-amber-500/10 p-3 text-xs text-amber-400">
           <p className="mb-1 font-medium">Warnings</p>
           <ul className="list-inside list-disc space-y-0.5">
             {warnings.map((w) => (
