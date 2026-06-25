@@ -43,14 +43,14 @@ export function Sidebar() {
   }
 
   return (
-    <aside className="hidden w-60 shrink-0 flex-col border-r border-slate-200 bg-white md:flex">
-      <div className="flex h-14 items-center gap-2 border-b border-slate-200 px-4">
-        <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-slate-900 text-xs font-bold text-white">
+    <aside className="hidden w-64 shrink-0 flex-col border-r border-border-subtle bg-surface md:flex">
+      <div className="flex h-16 items-center gap-2.5 px-5">
+        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-accent to-accent-2 text-xs font-bold text-white">
           AG
         </div>
-        <span className="text-sm font-semibold">App Growth Desk</span>
+        <span className="text-sm font-semibold text-foreground">App Growth Desk</span>
       </div>
-      <nav className="flex-1 overflow-y-auto px-2 py-3">
+      <nav className="flex-1 overflow-y-auto px-3 py-2">
         {NAV_ITEMS.map((item) => {
           const active = pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href));
           const Icon = item.icon;
@@ -59,8 +59,8 @@ export function Sidebar() {
               key={item.href}
               href={item.href}
               className={cn(
-                "mb-0.5 flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-100",
-                active && "bg-slate-900 text-white hover:bg-slate-900"
+                "mb-1 flex items-center gap-2.5 rounded-xl px-3 py-2.5 text-sm font-medium text-muted transition-colors hover:bg-surface-2 hover:text-foreground",
+                active && "bg-gradient-to-r from-accent to-accent-2 text-white shadow-lg shadow-accent/20 hover:from-accent hover:to-accent-2 hover:text-white"
               )}
             >
               <Icon className="h-4 w-4" />
@@ -69,10 +69,10 @@ export function Sidebar() {
           );
         })}
       </nav>
-      <div className="border-t border-slate-200 p-3">
+      <div className="border-t border-border-subtle p-3">
         <button
           onClick={logout}
-          className="flex w-full items-center gap-2.5 rounded-lg px-3 py-2 text-sm font-medium text-slate-500 hover:bg-slate-100"
+          className="flex w-full items-center gap-2.5 rounded-xl px-3 py-2.5 text-sm font-medium text-muted hover:bg-surface-2 hover:text-foreground"
         >
           <LogOut className="h-4 w-4" />
           Sign out
