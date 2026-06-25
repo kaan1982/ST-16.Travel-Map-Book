@@ -34,9 +34,12 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-slate-50 px-4">
+    <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <Card className="w-full max-w-sm">
         <CardHeader>
+          <div className="mb-1 flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-accent to-accent-2 text-sm font-bold text-white">
+            AG
+          </div>
           <CardTitle className="text-lg">App Growth Desk</CardTitle>
           <CardDescription>Private ASO intelligence panel — owner access only.</CardDescription>
         </CardHeader>
@@ -62,8 +65,8 @@ export default function LoginPage() {
                 required
               />
             </div>
-            {error && <p className="text-xs text-red-600">{error}</p>}
-            <Button type="submit" disabled={loading} className="mt-2 w-full">
+            {error && <p className="text-xs text-rose-400">{error}</p>}
+            <Button type="submit" disabled={loading} size="lg" className="mt-2 w-full">
               {loading ? "Signing in..." : "Sign in"}
             </Button>
           </form>

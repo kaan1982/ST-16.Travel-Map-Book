@@ -14,8 +14,8 @@ export default function MetadataEditorPage() {
     <div className="flex flex-col gap-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-xl font-semibold text-slate-900">Metadata Editor</h1>
-          <p className="text-sm text-slate-500">Spreadsheet-style editor across all locales.</p>
+          <h1 className="text-xl font-semibold text-foreground">Metadata Editor</h1>
+          <p className="text-sm text-muted">Spreadsheet-style editor across all locales.</p>
         </div>
         <Select value={appId} onValueChange={setAppId}>
           <SelectTrigger className="w-56">
@@ -37,7 +37,7 @@ export default function MetadataEditorPage() {
           {metadata && metadata.length > 0 ? (
             <MetadataEditorTable initialMetadata={metadata} appStoreConnectAvailable={false} />
           ) : (
-            <p className="py-8 text-center text-sm text-slate-400">
+            <p className="py-8 text-center text-sm text-muted">
               No metadata fetched for this app yet — data unavailable.
             </p>
           )}

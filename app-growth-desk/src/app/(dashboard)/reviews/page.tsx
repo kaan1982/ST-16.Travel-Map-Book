@@ -42,8 +42,8 @@ export default function ReviewsPage() {
   return (
     <div className="flex flex-col gap-6">
       <div>
-        <h1 className="text-xl font-semibold text-slate-900">Reviews</h1>
-        <p className="text-sm text-slate-500">Sentiment analysis and AI-generated reply drafts.</p>
+        <h1 className="text-xl font-semibold text-foreground">Reviews</h1>
+        <p className="text-sm text-muted">Sentiment analysis and AI-generated reply drafts.</p>
       </div>
 
       <div className="flex flex-col gap-3">
@@ -51,7 +51,7 @@ export default function ReviewsPage() {
           <Card key={r.id}>
             <CardContent className="flex flex-col gap-3 p-4">
               <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2 text-xs text-slate-500">
+                <div className="flex items-center gap-2 text-xs text-muted">
                   <span className="flex items-center gap-0.5">
                     {Array.from({ length: r.rating }).map((_, i) => (
                       <Star key={i} className="h-3.5 w-3.5 fill-amber-400 text-amber-400" />
@@ -62,7 +62,7 @@ export default function ReviewsPage() {
                 </div>
                 <Badge variant={sentimentVariant[r.sentiment] ?? "secondary"}>{r.sentiment}</Badge>
               </div>
-              <p className="text-sm text-slate-700">{r.body}</p>
+              <p className="text-sm text-foreground">{r.body}</p>
               <div className="flex gap-2">
                 <Button size="sm" variant="outline">Generate friendly reply</Button>
                 <Button size="sm" variant="outline">Generate professional reply</Button>
@@ -76,7 +76,7 @@ export default function ReviewsPage() {
         <CardHeader>
           <CardTitle>Connect App Store Connect</CardTitle>
         </CardHeader>
-        <CardContent className="text-sm text-slate-500">
+        <CardContent className="text-sm text-muted">
           Connect your App Store Connect API credentials in Settings to fetch live reviews and publish replies.
         </CardContent>
       </Card>

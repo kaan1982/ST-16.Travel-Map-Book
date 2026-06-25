@@ -44,8 +44,8 @@ export default function KeywordTrackerPage() {
     <div className="flex flex-col gap-6">
       <div className="flex items-start justify-between gap-4">
         <div>
-          <h1 className="text-xl font-semibold text-slate-900">Keyword Tracker</h1>
-          <p className="text-sm text-slate-500">Daily ranking across all tracked apps and countries.</p>
+          <h1 className="text-xl font-semibold text-foreground">Keyword Tracker</h1>
+          <p className="text-sm text-muted">Daily ranking across all tracked apps and countries.</p>
         </div>
         <ExportButton rows={filtered} filename="keywords.csv" />
       </div>

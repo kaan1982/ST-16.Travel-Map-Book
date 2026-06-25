@@ -7,12 +7,12 @@ export default function ReportsPage() {
     <div className="flex flex-col gap-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-xl font-semibold text-slate-900">Reports</h1>
-          <p className="text-sm text-slate-500">Weekly ASO report per app.</p>
+          <h1 className="text-xl font-semibold text-foreground">Reports</h1>
+          <p className="text-sm text-muted">Weekly ASO report per app.</p>
         </div>
         <div className="flex gap-2">
           <Button variant="outline">Export CSV</Button>
-          <Button variant="outline">Export PDF</Button>
+          <Button>Export PDF</Button>
         </div>
       </div>
 
@@ -23,20 +23,20 @@ export default function ReportsPage() {
           </CardHeader>
           <CardContent className="grid gap-4 text-sm sm:grid-cols-2">
             <div>
-              <p className="font-medium text-slate-900">Ranking gains</p>
-              <p className="text-slate-500">&ldquo;water eject&rdquo; held #1, &ldquo;remove water from phone&rdquo; up 7 spots.</p>
+              <p className="font-medium text-foreground">Ranking gains</p>
+              <p className="text-muted">&ldquo;water eject&rdquo; held #1, &ldquo;remove water from phone&rdquo; up 7 spots.</p>
             </div>
             <div>
-              <p className="font-medium text-slate-900">Ranking losses</p>
-              <p className="text-slate-500">&ldquo;speaker cleaner&rdquo; dropped from #4 to #9 in the US.</p>
+              <p className="font-medium text-foreground">Ranking losses</p>
+              <p className="text-muted">&ldquo;speaker cleaner&rdquo; dropped from #4 to #9 in the US.</p>
             </div>
             <div>
-              <p className="font-medium text-slate-900">Best / worst countries</p>
-              <p className="text-slate-500">Best: US. Worst: Germany — localized keywords under-targeted.</p>
+              <p className="font-medium text-foreground">Best / worst countries</p>
+              <p className="text-muted">Best: US. Worst: Germany — localized keywords under-targeted.</p>
             </div>
             <div>
-              <p className="font-medium text-slate-900">Next actions</p>
-              <p className="text-slate-500">Refresh subtitle, add German localized keyword cluster.</p>
+              <p className="font-medium text-foreground">Next actions</p>
+              <p className="text-muted">Refresh subtitle, add German localized keyword cluster.</p>
             </div>
           </CardContent>
         </Card>

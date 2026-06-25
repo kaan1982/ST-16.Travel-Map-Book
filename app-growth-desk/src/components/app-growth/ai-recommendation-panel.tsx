@@ -20,7 +20,7 @@ export function AIRecommendationPanel({ result }: { result: AIAuditResult }) {
         <CardHeader>
           <CardTitle>Diagnosis</CardTitle>
         </CardHeader>
-        <CardContent className="text-sm text-slate-700">{result.diagnosis}</CardContent>
+        <CardContent className="text-sm text-foreground">{result.diagnosis}</CardContent>
       </Card>
 
       <div className="grid gap-4 md:grid-cols-2">
@@ -30,16 +30,16 @@ export function AIRecommendationPanel({ result }: { result: AIAuditResult }) {
           </CardHeader>
           <CardContent className="flex flex-col gap-2 text-sm">
             <div>
-              <span className="text-xs font-medium text-slate-500">Title</span>
-              <p className="font-medium text-slate-900">{result.metadataRewrite.title}</p>
+              <span className="text-xs font-medium text-muted">Title</span>
+              <p className="font-medium text-foreground">{result.metadataRewrite.title}</p>
             </div>
             <div>
-              <span className="text-xs font-medium text-slate-500">Subtitle</span>
-              <p className="font-medium text-slate-900">{result.metadataRewrite.subtitle}</p>
+              <span className="text-xs font-medium text-muted">Subtitle</span>
+              <p className="font-medium text-foreground">{result.metadataRewrite.subtitle}</p>
             </div>
             <div>
-              <span className="text-xs font-medium text-slate-500">Keyword field (100 chars)</span>
-              <p className="font-mono text-xs text-slate-700">{result.keywordField}</p>
+              <span className="text-xs font-medium text-muted">Keyword field (100 chars)</span>
+              <p className="font-mono text-xs text-foreground">{result.keywordField}</p>
             </div>
           </CardContent>
         </Card>
@@ -59,14 +59,14 @@ export function AIRecommendationPanel({ result }: { result: AIAuditResult }) {
           <CardHeader>
             <CardTitle>Country-specific notes</CardTitle>
           </CardHeader>
-          <CardContent className="text-sm text-slate-700">{result.countryNotes}</CardContent>
+          <CardContent className="text-sm text-foreground">{result.countryNotes}</CardContent>
         </Card>
 
         <Card>
           <CardHeader>
             <CardTitle>Competitor insight</CardTitle>
           </CardHeader>
-          <CardContent className="text-sm text-slate-700">{result.competitorInsight}</CardContent>
+          <CardContent className="text-sm text-foreground">{result.competitorInsight}</CardContent>
         </Card>
 
         <Card>
@@ -85,7 +85,7 @@ export function AIRecommendationPanel({ result }: { result: AIAuditResult }) {
             <CardTitle>What not to do</CardTitle>
           </CardHeader>
           <CardContent>
-            <ul className="list-inside list-disc space-y-1 text-sm text-slate-700">
+            <ul className="list-inside list-disc space-y-1 text-sm text-foreground">
               {result.whatNotToDo.map((item) => (
                 <li key={item}>{item}</li>
               ))}
@@ -98,7 +98,7 @@ export function AIRecommendationPanel({ result }: { result: AIAuditResult }) {
             <CardTitle>7-day test plan</CardTitle>
           </CardHeader>
           <CardContent>
-            <ol className="list-inside list-decimal space-y-1 text-sm text-slate-700">
+            <ol className="list-inside list-decimal space-y-1 text-sm text-foreground">
               {result.sevenDayPlan.map((item) => (
                 <li key={item}>{item}</li>
               ))}
@@ -111,7 +111,7 @@ export function AIRecommendationPanel({ result }: { result: AIAuditResult }) {
             <CardTitle>30-day growth plan</CardTitle>
           </CardHeader>
           <CardContent>
-            <ol className="list-inside list-decimal space-y-1 text-sm text-slate-700">
+            <ol className="list-inside list-decimal space-y-1 text-sm text-foreground">
               {result.thirtyDayPlan.map((item) => (
                 <li key={item}>{item}</li>
               ))}

@@ -15,8 +15,8 @@ export default function LocalizationPage() {
   return (
     <div className="flex flex-col gap-6">
       <div>
-        <h1 className="text-xl font-semibold text-slate-900">Localization</h1>
-        <p className="text-sm text-slate-500">
+        <h1 className="text-xl font-semibold text-foreground">Localization</h1>
+        <p className="text-sm text-muted">
           AI translates intent, not just words — local keyword variants per country with confidence scores.
         </p>
       </div>
@@ -40,7 +40,7 @@ export default function LocalizationPage() {
                 <TableRow key={i}>
                   <TableCell>{row.country}</TableCell>
                   <TableCell>{row.term}</TableCell>
-                  <TableCell className="font-medium text-slate-900">{row.local}</TableCell>
+                  <TableCell className="font-medium text-foreground">{row.local}</TableCell>
                   <TableCell>
                     <Badge variant={row.confidence >= 85 ? "success" : "warning"}>{row.confidence}%</Badge>
                   </TableCell>

@@ -12,7 +12,7 @@ const LIMITS = { title: 30, subtitle: 30, keywordsField: 100, promotionalText: 1
 function CharCounter({ value, limit }: { value: string | null; limit: number }) {
   const len = value?.length ?? 0;
   return (
-    <span className={cn("text-[11px]", len > limit ? "text-red-600" : "text-slate-400")}>
+    <span className={cn("text-[11px]", len > limit ? "text-red-600" : "text-muted")}>
       {len}/{limit}
     </span>
   );
@@ -75,8 +75,8 @@ export function MetadataEditorTable({
             className={cn(
               "rounded-lg border px-3 py-1.5 text-xs font-medium",
               m.localeCode === activeLocale
-                ? "border-slate-900 bg-slate-900 text-white"
-                : "border-slate-200 bg-white text-slate-600 hover:bg-slate-50"
+                ? "border-transparent bg-gradient-to-r from-accent to-accent-2 text-white"
+                : "border-border-subtle bg-surface text-muted hover:bg-surface-2"
             )}
           >
             {m.localeCode}
@@ -98,7 +98,7 @@ export function MetadataEditorTable({
       <div className="grid gap-4 md:grid-cols-2">
         <div className="flex flex-col gap-1">
           <div className="flex items-center justify-between">
-            <label className="text-xs font-medium text-slate-600">App Name</label>
+            <label className="text-xs font-medium text-muted">App Name</label>
             <CharCounter value={current.title} limit={LIMITS.title} />
           </div>
           <Input value={current.title ?? ""} onChange={(e) => update("title", e.target.value)} />
@@ -106,7 +106,7 @@ export function MetadataEditorTable({
 
         <div className="flex flex-col gap-1">
           <div className="flex items-center justify-between">
-            <label className="text-xs font-medium text-slate-600">Subtitle</label>
+            <label className="text-xs font-medium text-muted">Subtitle</label>
             <CharCounter value={current.subtitle} limit={LIMITS.subtitle} />
           </div>
           <Input value={current.subtitle ?? ""} onChange={(e) => update("subtitle", e.target.value)} />
@@ -114,7 +114,7 @@ export function MetadataEditorTable({
 
         <div className="flex flex-col gap-1 md:col-span-2">
           <div className="flex items-center justify-between">
-            <label className="text-xs font-medium text-slate-600">Keywords field (comma separated)</label>
+            <label className="text-xs font-medium text-muted">Keywords field (comma separated)</label>
             <CharCounter value={current.keywordsField} limit={LIMITS.keywordsField} />
           </div>
           <Textarea
@@ -126,7 +126,7 @@ export function MetadataEditorTable({
 
         <div className="flex flex-col gap-1 md:col-span-2">
           <div className="flex items-center justify-between">
-            <label className="text-xs font-medium text-slate-600">Promotional text</label>
+            <label className="text-xs font-medium text-muted">Promotional text</label>
             <CharCounter value={current.promotionalText} limit={LIMITS.promotionalText} />
           </div>
           <Textarea
@@ -136,7 +136,7 @@ export function MetadataEditorTable({
         </div>
 
         <div className="flex flex-col gap-1 md:col-span-2">
-          <label className="text-xs font-medium text-slate-600">Description</label>
+          <label className="text-xs font-medium text-muted">Description</label>
           <Textarea
             value={current.description ?? ""}
             onChange={(e) => update("description", e.target.value)}
@@ -145,25 +145,25 @@ export function MetadataEditorTable({
         </div>
 
         <div className="flex flex-col gap-1 md:col-span-2">
-          <label className="text-xs font-medium text-slate-600">Release notes</label>
+          <label className="text-xs font-medium text-muted">Release notes</label>
           <Textarea value={current.releaseNotes ?? ""} onChange={(e) => update("releaseNotes", e.target.value)} />
         </div>
 
         <div className="flex flex-col gap-1">
-          <label className="text-xs font-medium text-slate-600">Support URL</label>
+          <label className="text-xs font-medium text-muted">Support URL</label>
           <Input value={current.supportUrl ?? ""} onChange={(e) => update("supportUrl", e.target.value)} />
         </div>
         <div className="flex flex-col gap-1">
-          <label className="text-xs font-medium text-slate-600">Marketing URL</label>
+          <label className="text-xs font-medium text-muted">Marketing URL</label>
           <Input value={current.marketingUrl ?? ""} onChange={(e) => update("marketingUrl", e.target.value)} />
         </div>
         <div className="flex flex-col gap-1">
-          <label className="text-xs font-medium text-slate-600">Privacy policy URL</label>
+          <label className="text-xs font-medium text-muted">Privacy policy URL</label>
           <Input value={current.privacyUrl ?? ""} onChange={(e) => update("privacyUrl", e.target.value)} />
         </div>
       </div>
 
-      <div className="flex flex-wrap gap-2 border-t border-slate-100 pt-4">
+      <div className="flex flex-wrap gap-2 border-t border-border-subtle pt-4">
         <Button variant="outline" size="sm">Generate ASO Version</Button>
         <Button variant="outline" size="sm">Translate from English</Button>
         <Button variant="outline" size="sm">Copy from another locale</Button>

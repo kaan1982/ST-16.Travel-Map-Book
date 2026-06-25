@@ -36,8 +36,8 @@ export default function AIAsoAuditPage() {
     <div className="flex flex-col gap-6">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <h1 className="text-xl font-semibold text-slate-900">AI ASO Audit</h1>
-          <p className="text-sm text-slate-500">Generate a practical, app-specific optimization plan.</p>
+          <h1 className="text-xl font-semibold text-foreground">AI ASO Audit</h1>
+          <p className="text-sm text-muted">Generate a practical, app-specific optimization plan.</p>
         </div>
         <div className="flex items-end gap-2">
           <Select value={appId} onValueChange={setAppId}>
@@ -68,7 +68,7 @@ export default function AIAsoAuditPage() {
         </>
       ) : (
         <Card>
-          <CardContent className="py-10 text-center text-sm text-slate-400">
+          <CardContent className="py-10 text-center text-sm text-muted">
             Run an audit to see the ASO score, metadata rewrite and action plans.
           </CardContent>
         </Card>

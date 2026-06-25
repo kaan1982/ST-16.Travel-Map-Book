@@ -17,8 +17,8 @@ export default function CompetitorsPage() {
   return (
     <div className="flex flex-col gap-6">
       <div>
-        <h1 className="text-xl font-semibold text-slate-900">Competitor Analysis</h1>
-        <p className="text-sm text-slate-500">Add competitor App Store URLs to compare metadata and keyword overlap.</p>
+        <h1 className="text-xl font-semibold text-foreground">Competitor Analysis</h1>
+        <p className="text-sm text-muted">Add competitor App Store URLs to compare metadata and keyword overlap.</p>
       </div>
 
       <form
@@ -77,7 +77,7 @@ export default function CompetitorsPage() {
         <CardHeader>
           <CardTitle>AI explanation</CardTitle>
         </CardHeader>
-        <CardContent className="text-sm text-slate-700">
+        <CardContent className="text-sm text-foreground">
           Sonic likely ranks ahead on shared keywords because their subtitle leads with the symptom (&ldquo;muffled sound&rdquo;)
           rather than the mechanism (&ldquo;sound waves&rdquo;), and their keyword field avoids repeating title words. Attack
           &ldquo;remove water from phone&rdquo; and &ldquo;iphone speaker water&rdquo; — both have rising volume with moderate difficulty.

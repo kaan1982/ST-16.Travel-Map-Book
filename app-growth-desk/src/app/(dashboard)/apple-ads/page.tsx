@@ -14,10 +14,10 @@ export default function AppleAdsPage() {
     <div className="flex flex-col gap-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-xl font-semibold text-slate-900">Apple Ads</h1>
-          <p className="text-sm text-slate-500">Optional module — organic rank shown beside paid performance.</p>
+          <h1 className="text-xl font-semibold text-foreground">Apple Ads</h1>
+          <p className="text-sm text-muted">Optional module — organic rank shown beside paid performance.</p>
         </div>
-        <Button variant="outline">Connect Apple Ads API</Button>
+        <Button>Connect Apple Ads API</Button>
       </div>
 
       <Card>

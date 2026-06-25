@@ -7,16 +7,16 @@ export function CompetitorComparisonCard({ competitor }: { competitor: Competito
   return (
     <Card>
       <CardHeader className="flex flex-row items-start gap-3 pb-2">
-        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-sm font-semibold text-slate-500">
+        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-surface-2 text-sm font-semibold text-muted">
           {competitor.name.charAt(0)}
         </div>
         <div className="flex-1">
           <CardTitle>{competitor.name}</CardTitle>
-          <p className="text-xs text-slate-500">{competitor.subtitle}</p>
+          <p className="text-xs text-muted">{competitor.subtitle}</p>
         </div>
       </CardHeader>
       <CardContent className="flex flex-col gap-2">
-        <div className="flex items-center gap-3 text-xs text-slate-500">
+        <div className="flex items-center gap-3 text-xs text-muted">
           <span className="flex items-center gap-1">
             <Star className="h-3.5 w-3.5 fill-amber-400 text-amber-400" />
             {competitor.ratingAverage} ({competitor.ratingCount.toLocaleString()})

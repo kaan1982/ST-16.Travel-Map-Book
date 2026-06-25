@@ -11,11 +11,11 @@ export function ASOScoreCard({ label, score }: { label: string; score: number })
   return (
     <Card>
       <CardHeader className="pb-1">
-        <CardTitle className="text-xs font-medium text-slate-500">{label}</CardTitle>
+        <CardTitle className="text-xs font-medium text-muted">{label}</CardTitle>
       </CardHeader>
       <CardContent className="pt-0">
         <div className={cn("text-2xl font-semibold", scoreColor(score))}>{score}</div>
-        <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-slate-100">
+        <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-surface-2">
           <div
             className={cn(
               "h-full rounded-full",

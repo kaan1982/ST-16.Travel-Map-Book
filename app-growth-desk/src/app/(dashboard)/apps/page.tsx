@@ -6,8 +6,8 @@ export default function AppsPage() {
   return (
     <div className="flex flex-col gap-6">
       <div>
-        <h1 className="text-xl font-semibold text-slate-900">Apps</h1>
-        <p className="text-sm text-slate-500">Paste an App Store URL or app ID to import an app.</p>
+        <h1 className="text-xl font-semibold text-foreground">Apps</h1>
+        <p className="text-sm text-muted">Paste an App Store URL or app ID to import an app.</p>
       </div>
 
       <ImportAppForm />

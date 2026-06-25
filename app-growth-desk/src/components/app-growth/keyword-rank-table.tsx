@@ -95,7 +95,7 @@ export function KeywordRankTable({ rows }: { rows: KeywordRow[] }) {
               >
                 <span className="inline-flex items-center gap-1">
                   {flexRender(header.column.columnDef.header, header.getContext())}
-                  {header.column.getCanSort() && <ArrowUpDown className="h-3 w-3 text-slate-300" />}
+                  {header.column.getCanSort() && <ArrowUpDown className="h-3 w-3 text-muted" />}
                 </span>
               </TableHead>
             ))}
@@ -112,7 +112,7 @@ export function KeywordRankTable({ rows }: { rows: KeywordRow[] }) {
         ))}
         {table.getRowModel().rows.length === 0 && (
           <TableRow>
-            <TableCell colSpan={columns.length} className="py-8 text-center text-slate-400">
+            <TableCell colSpan={columns.length} className="py-8 text-center text-muted">
               No keywords match the current filters.
             </TableCell>
           </TableRow>
